@@ -9,22 +9,27 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 class CategoryTableViewController: UITableViewController, AddNewCategoryDelegate {
     
     var categories = [Category]()
-    var items = [Item]()
-    var itemTitles :String?
+    let userID = FIRAuth.auth()?.currentUser?.uid
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Grocery App"
         self.populateData()
+        
+        print(userID!)
+
     }
 
     private func populateData() {
         
-        let ref = FIRDatabase.database().reference(withPath: "categories")
+        let ref = FIRDatabase.database().reference(withPath: self.userID!)
         ref.observe(.value) { (snapshot :FIRDataSnapshot) in
             
             self.categories.removeAll()
@@ -48,7 +53,7 @@ class CategoryTableViewController: UITableViewController, AddNewCategoryDelegate
     
     private func addData(title :String) {
         
-        let ref = FIRDatabase.database().reference(withPath: "categories")
+        let ref = FIRDatabase.database().reference(withPath: self.userID!)
         let categoryRef = ref.child(title)
         
         let category = Category()
@@ -123,7 +128,6 @@ class CategoryTableViewController: UITableViewController, AddNewCategoryDelegate
             let itemTVC: ItemTableViewController = segue.destination as! ItemTableViewController
             
             itemTVC.categories = category
-            
         }
         
     }
@@ -145,5 +149,11 @@ class CategoryTableViewController: UITableViewController, AddNewCategoryDelegate
         cell.textLabel?.text = category.title
         return cell
     }
+    
+    @IBAction func logOutButtonPressed() {
+        try! FIRAuth.auth()!.signOut()
+    
+    }
+
     
 }

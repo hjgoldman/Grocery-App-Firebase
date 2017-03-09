@@ -9,11 +9,13 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 class ItemTableViewController: UITableViewController, AddNewItemDelegate {
     
     var categories = Category()
     var items = [Item]()
+    let userID = FIRAuth.auth()?.currentUser?.uid
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +28,7 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
     
     private func populateData() {
         
-        let ref = FIRDatabase.database().reference(withPath: "categories")
+        let ref = FIRDatabase.database().reference(withPath: self.userID!)
         ref.observe(.value) { (snapshot :FIRDataSnapshot) in
             
             self.items.removeAll()
@@ -63,7 +65,7 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
     }
     
     private func addData(title :String) {
-        let ref = FIRDatabase.database().reference(withPath: "categories")
+        let ref = FIRDatabase.database().reference(withPath: self.userID!)
         let categoryRef = ref.child(self.categories.title)
         
         let item = Item()
@@ -81,7 +83,6 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
         
         self.addData(title: title)
         self.populateData()
-        
     }
     
     //segue
@@ -102,7 +103,6 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
         // #warning Incomplete implementation, return the number of rows
         return self.items.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)

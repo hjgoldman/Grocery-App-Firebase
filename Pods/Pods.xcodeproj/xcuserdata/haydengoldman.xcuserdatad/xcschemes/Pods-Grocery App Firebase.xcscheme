@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6FA408FD8580F119FA0A931F2A208126"
+               BlueprintIdentifier = "EB5C474D26072547EB1E157C012D6F9E"
                BuildableName = "Pods_Grocery_App_Firebase.framework"
                BlueprintName = "Pods-Grocery App Firebase"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6FA408FD8580F119FA0A931F2A208126"
+            BlueprintIdentifier = "EB5C474D26072547EB1E157C012D6F9E"
             BuildableName = "Pods_Grocery_App_Firebase.framework"
             BlueprintName = "Pods-Grocery App Firebase"
             ReferencedContainer = "container:Pods.xcodeproj">

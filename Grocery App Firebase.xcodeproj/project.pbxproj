@@ -18,6 +18,7 @@
 		C600649C1E7090EB0098E133 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C600649B1E7090EB0098E133 /* CategoryTableViewController.swift */; };
 		C600649E1E709D2E0098E133 /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C600649D1E709D2E0098E133 /* ItemTableViewController.swift */; };
 		C60064A01E70F9C70098E133 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C600649F1E70F9C70098E133 /* AddItemViewController.swift */; };
+		C60064E31E71EEC10098E133 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60064E21E71EEC10098E133 /* LogInViewController.swift */; };
 		F4EC3B91F8833F8570BFD3FE /* Pods_Grocery_App_Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A0B7C3E5FB3710FBB57B72E /* Pods_Grocery_App_Firebase.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		C600649B1E7090EB0098E133 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryTableViewController.swift; path = "Grocery App Firebase/CategoryTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		C600649D1E709D2E0098E133 /* ItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemTableViewController.swift; path = "Grocery App Firebase/ItemTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		C600649F1E70F9C70098E133 /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddItemViewController.swift; path = "Grocery App Firebase/AddItemViewController.swift"; sourceTree = SOURCE_ROOT; };
+		C60064E21E71EEC10098E133 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		C60064621E708BC40098E133 /* Grocery App Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				C60064E11E71EEB20098E133 /* LogIn */,
 				C600647A1E708D260098E133 /* GroceryCategories */,
 				C600647C1E708D260098E133 /* GroceryItems */,
 				C60064631E708BC40098E133 /* AppDelegate.swift */,
@@ -96,9 +99,9 @@
 		C600647A1E708D260098E133 /* GroceryCategories */ = {
 			isa = PBXGroup;
 			children = (
-				C60064971E7090CE0098E133 /* Category.swift */,
 				C600649B1E7090EB0098E133 /* CategoryTableViewController.swift */,
 				C60064991E7090DB0098E133 /* AddCategoryViewController.swift */,
+				C60064971E7090CE0098E133 /* Category.swift */,
 			);
 			name = GroceryCategories;
 			path = "../../GroceryApp Firebase/GroceryApp Firebase";
@@ -107,12 +110,20 @@
 		C600647C1E708D260098E133 /* GroceryItems */ = {
 			isa = PBXGroup;
 			children = (
-				C60064951E7090C40098E133 /* Item.swift */,
 				C600649D1E709D2E0098E133 /* ItemTableViewController.swift */,
 				C600649F1E70F9C70098E133 /* AddItemViewController.swift */,
+				C60064951E7090C40098E133 /* Item.swift */,
 			);
 			name = GroceryItems;
 			path = "../../GroceryApp Firebase/GroceryApp Firebase";
+			sourceTree = "<group>";
+		};
+		C60064E11E71EEB20098E133 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				C60064E21E71EEC10098E133 /* LogInViewController.swift */,
+			);
+			name = LogIn;
 			sourceTree = "<group>";
 		};
 		E4953849D3D439B3952C2320 /* Pods */ = {
@@ -253,6 +264,7 @@
 				C60064961E7090C40098E133 /* Item.swift in Sources */,
 				C60064641E708BC40098E133 /* AppDelegate.swift in Sources */,
 				C60064981E7090CE0098E133 /* Category.swift in Sources */,
+				C60064E31E71EEC10098E133 /* LogInViewController.swift in Sources */,
 				C60064A01E70F9C70098E133 /* AddItemViewController.swift in Sources */,
 				C600649E1E709D2E0098E133 /* ItemTableViewController.swift in Sources */,
 				C600649C1E7090EB0098E133 /* CategoryTableViewController.swift in Sources */,
