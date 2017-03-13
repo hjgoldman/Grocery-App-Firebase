@@ -36,39 +36,71 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             } else {
                 
                 let alertController = UIAlertController(title: "Error!", message:
-                    "Invalid email/password", preferredStyle: UIAlertControllerStyle.alert)
+                    "Invalid email/password", preferredStyle: .alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                 self.present(alertController, animated: true, completion: nil)
             }
         })
     }
-
-    @IBAction func signUpButtonDidPressed(_ sender: Any) {
-
-        FIRAuth.auth()?.createUser(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: { (user :FIRUser?, error :Error?) in
+    
+    @IBAction func signUpButtonDidPressed() {
+        
+        let alertController = UIAlertController(title: "Sign Up", message: "", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Register", style: .default, handler: {
+            alert -> Void in
             
-            if  error == nil {
+            let emailRegisterTextField = alertController.textFields![0] as UITextField
+            let passwordRegisterField = alertController.textFields![1] as UITextField
+
+            
+            FIRAuth.auth()?.createUser(withEmail: emailRegisterTextField.text!, password: passwordRegisterField.text!, completion: { (user :FIRUser?, error :Error?) in
                 
-                FIRAuth.auth()?.signIn(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!, completion: { (user :FIRUser?, error :Error?) in
-                    if error == nil {
-                        
-                        self.performSegue(withIdentifier: "LogInSegue", sender: self)
-                        
-                    } else {
-                        
-                        let alertController = UIAlertController(title: "Error!", message:
-                            "Invalid email/password", preferredStyle: UIAlertControllerStyle.alert)
-                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                        self.present(alertController, animated: true, completion: nil)
-                    }
-                })
-            } else {
-                let alertController = UIAlertController(title: "Error!", message:
-                    "Invalid email/password or email is already registered", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-                self.present(alertController, animated: true, completion: nil)
-            }
+                if  error == nil {
+                    
+                    FIRAuth.auth()?.signIn(withEmail: emailRegisterTextField.text!, password: passwordRegisterField.text!, completion: { (user :FIRUser?, error :Error?) in
+                        if error == nil {
+                            
+                            self.performSegue(withIdentifier: "LogInSegue", sender: self)
+                            
+                        } else {
+                            
+                            let alertController = UIAlertController(title: "Error!", message:
+                                "Invalid email/password", preferredStyle: .alert)
+                            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                            self.present(alertController, animated: true, completion: nil)
+                        }
+                    })
+                } else {
+                    let alertController = UIAlertController(title: "Error!", message:
+                        "Invalid email/password or email is already registered", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            })
+
+            
         })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+            (action : UIAlertAction!) -> Void in
+            
+        })
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "email"
+            
+        }
+        
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "password"
+            textField.isSecureTextEntry = true
+        }
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -31,14 +31,14 @@ class CategoryTableViewController: UITableViewController, AddNewCategoryDelegate
         
         let ref = FIRDatabase.database().reference(withPath: self.userID!)
         ref.observe(.value) { (snapshot :FIRDataSnapshot) in
-            
+
             self.categories.removeAll()
 
             for snap in snapshot.children {
                 
                 let snapshotDictionary = (snap as! FIRDataSnapshot).value as! [String:Any]
                 let categoryTitle = snapshotDictionary["title"] as! String
-    
+                
                 let category = Category()
                 category.title = categoryTitle
 
@@ -150,10 +150,21 @@ class CategoryTableViewController: UITableViewController, AddNewCategoryDelegate
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            let category = self.categories[indexPath.row]
+            let categoryTitle = category.title
+            
+            let ref = FIRDatabase.database().reference().child(self.userID!).child(categoryTitle!)
+            ref.ref.removeValue()
+
+        }
+    }
+    
+    
     @IBAction func logOutButtonPressed() {
         try! FIRAuth.auth()!.signOut()
-    
     }
-
-    
 }

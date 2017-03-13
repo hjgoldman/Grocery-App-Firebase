@@ -16,11 +16,13 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
     var categories = Category()
     var items = [Item]()
     let userID = FIRAuth.auth()?.currentUser?.uid
+    
+    var item = Item()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = categories.title
+        self.title = self.categories.title
         
         self.populateData()
         
@@ -37,7 +39,8 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
                 
                 let snapshotDictionary = (snap as! FIRDataSnapshot).value as! [String:Any]
                 
-                if snapshotDictionary["title"] as! String == self.categories.title {
+                if snapshotDictionary["title"] as? String == self.categories.title {
+                    
                     
                     let itemArrayOfDictionaries = snapshotDictionary["items"] as? [[String:Any]]
                     
@@ -66,7 +69,7 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
     
     private func addData(title :String) {
         let ref = FIRDatabase.database().reference(withPath: self.userID!)
-        let categoryRef = ref.child(self.categories.title)
+        let categoryRef = ref.child(self.categories.title!)
         
         let item = Item()
         item.title = title
@@ -76,6 +79,16 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
         self.categories.items = self.items
         
         categoryRef.setValue(self.categories.toDictionary())
+    }
+    
+    private func updateData() {
+        let ref = FIRDatabase.database().reference(withPath: self.userID!)
+        let categoryRef = ref.child(self.categories.title!)
+        
+        self.categories.items = self.items
+
+        categoryRef.setValue(self.categories.toDictionary())
+        
     }
 
     //add item
@@ -112,6 +125,20 @@ class ItemTableViewController: UITableViewController, AddNewItemDelegate {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            self.items.remove(at: indexPath.row)
+            
+            self.tableView.reloadData()
+            
+            self.updateData()
+            
+        }
+    }
+
 
 
 }

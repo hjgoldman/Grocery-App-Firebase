@@ -68,9 +68,10 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzd-fo-JSA">
                                 <rect key="frame" x="149" y="330" width="76" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <action selector="signUpButtonDidPressed:" destination="pnT-OX-See" eventType="touchUpInside" id="xDz-Nl-hvQ"/>
+                                    <action selector="signUpButtonDidPressed" destination="pnT-OX-See" eventType="touchUpInside" id="aDk-YL-HKZ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZQh-b8-3tr">
@@ -119,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OJ3-qI-yjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-625" y="143"/>
+            <point key="canvasLocation" x="-626.39999999999998" y="142.57871064467767"/>
         </scene>
         <!--Add Category View Controller-->
         <scene sceneID="1p3-Yh-unY">
